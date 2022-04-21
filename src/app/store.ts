@@ -3,13 +3,15 @@ import { TodolistsActionsType, todolistsReducer } from '../features/TodolistsLis
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunkMiddleware, {ThunkAction} from 'redux-thunk'
 import { AppActionsType, appReducer } from './app-reducer'
+import { authReducer, LoginActionType } from '../features/Login/login-reducer';
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
     tasks: tasksReducer,
     todolists: todolistsReducer,
-    app: appReducer
+    app: appReducer,
+    auth: authReducer 
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
@@ -17,7 +19,7 @@ export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
 
-export type AllActionsType =  TodolistsActionsType | TasksActionsType | AppActionsType
+export type AllActionsType =  TodolistsActionsType | TasksActionsType | AppActionsType | LoginActionType
 
 export type AppThunkType<ReturnTyoe = void> = ThunkAction<ReturnTyoe, AppRootStateType, unknown, AllActionsType>
 
