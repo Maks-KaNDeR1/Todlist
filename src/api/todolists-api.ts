@@ -13,7 +13,7 @@ const instance = axios.create({
 export type LoginParamsType = {
     email: string
     password: string
-    rememberMe: boolean
+    rememberMe?: boolean
     captcha?: boolean
 }
 
@@ -22,7 +22,7 @@ export const authAPI = {
         return instance.get('/auth/me' )
     },
     login(data: LoginParamsType) {
-        return instance.post('/auth/login', data )
+        return instance.post<LoginParamsType, AxiosResponse<ResponseType<{userId: number}>>>('/auth/login', data )
     },
     logout() {
         return instance.delete(`/auth/login`)
