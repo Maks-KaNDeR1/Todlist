@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect} from 'react'
+<<<<<<< HEAD
 import {AddItemForm, AddItemFormSubmitHelperType} from '../../../components/AddItemForm/AddItemForm'
 import {EditableSpan} from '../../../components/EditableSpan/EditableSpan'
 import {Button, IconButton, Paper, PropTypes} from '@material-ui/core'
@@ -8,6 +9,17 @@ import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
 import {tasksActions, todolistsActions} from '../index'
 import {TaskStatuses, TaskType} from '../../../api/types'
 import {useActions, useAppDispatch} from '../../../utils/redux-utils'
+=======
+import {AddItemForm} from '../../../components/AddItemForm/AddItemForm'
+import {EditableSpan} from '../../../components/EditableSpan/EditableSpan'
+import {Button, IconButton} from '@material-ui/core'
+import {Delete} from '@material-ui/icons'
+import {Task} from './Task/Task'
+import {TaskStatuses, TaskType} from '../../../api/todolists-api'
+import {FilterValuesType, TodolistDomainType} from '../todolists-reducer'
+import {useDispatch} from 'react-redux'
+import {fetchTasksTC} from '../tasks-reducer'
+>>>>>>> f64df78645cc0e75da478139f0f761a22ecf5f09
 
 type PropsType = {
     todolist: TodolistDomainType
@@ -19,7 +31,18 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
     const {fetchTasks} = useActions(tasksActions)
     const {changeTodolistFilter, removeTodolistTC, changeTodolistTitleTC} = useActions(todolistsActions)
 
+<<<<<<< HEAD
     const dispatch = useAppDispatch()
+=======
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if (demo) {
+            return
+        }
+        const thunk = fetchTasksTC(props.todolist.id)
+        dispatch(thunk)
+    }, [])
+>>>>>>> f64df78645cc0e75da478139f0f761a22ecf5f09
 
     useEffect(() => {
         if (demo) {
@@ -95,9 +118,25 @@ export const Todolist = React.memo(function ({demo = false, ...props}: PropsType
             {!tasksForTodolist.length && <div style={{padding: '10px', color: 'grey'}}>No task</div>}
         </div>
         <div style={{paddingTop: '10px'}}>
+<<<<<<< HEAD
             {renderFilterButton('all', 'default', 'All')}
             {renderFilterButton('active', 'primary', 'Active')}
             {renderFilterButton('completed', 'secondary', 'Completed')}
+=======
+            <Button variant={props.todolist.filter === 'all' ? 'outlined' : 'text'}
+                    onClick={onAllClickHandler}
+                    color={'default'}
+            >All
+            </Button>
+            <Button variant={props.todolist.filter === 'active' ? 'outlined' : 'text'}
+                    onClick={onActiveClickHandler}
+                    color={'primary'}>Active
+            </Button>
+            <Button variant={props.todolist.filter === 'completed' ? 'outlined' : 'text'}
+                    onClick={onCompletedClickHandler}
+                    color={'secondary'}>Completed
+            </Button>
+>>>>>>> f64df78645cc0e75da478139f0f761a22ecf5f09
         </div>
     </Paper>
 })

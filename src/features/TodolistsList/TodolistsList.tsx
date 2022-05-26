@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect} from 'react'
+<<<<<<< HEAD
 import {useSelector} from 'react-redux'
 import {TodolistDomainType} from './todolists-reducer'
 import {TasksStateType} from './tasks-reducer'
@@ -10,6 +11,25 @@ import {selectIsLoggedIn} from '../Auth/selectors'
 import {tasksActions, todolistsActions} from './index'
 import {AppRootStateType} from '../../utils/types'
 import {useActions, useAppDispatch} from '../../utils/redux-utils'
+=======
+import {useDispatch, useSelector} from 'react-redux'
+import {AppRootStateType} from '../../app/store'
+import {
+    addTodolistTC,
+    changeTodolistFilterAC,
+    changeTodolistTitleTC,
+    fetchTodolistsTC,
+    FilterValuesType,
+    removeTodolistTC,
+    TodolistDomainType
+} from './todolists-reducer'
+import {addTaskTC, removeTaskTC, TasksStateType, updateTaskTC} from './tasks-reducer'
+import {TaskStatuses} from '../../api/todolists-api'
+import {Grid, Paper} from '@material-ui/core'
+import {AddItemForm} from '../../components/AddItemForm/AddItemForm'
+import {Todolist} from './Todolist/Todolist'
+import { Redirect } from 'react-router-dom'
+>>>>>>> f64df78645cc0e75da478139f0f761a22ecf5f09
 
 type PropsType = {
     demo?: boolean
@@ -50,7 +70,11 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
 
 
     if (!isLoggedIn) {
+<<<<<<< HEAD
         return <Redirect to={'/login'}/>
+=======
+        return <Redirect to={"/login"} />
+>>>>>>> f64df78645cc0e75da478139f0f761a22ecf5f09
     }
 
     return <>
